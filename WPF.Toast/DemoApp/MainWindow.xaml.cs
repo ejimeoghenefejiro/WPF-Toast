@@ -1,5 +1,7 @@
 ﻿using DemoApp.SamplesContent;
 using System;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -26,9 +28,11 @@ namespace DemoApp
                 NotificationMessage = "I am toast action",
                 Position = _positions != null ? _positions.Value : Positions.Central,
                 PositionReference = _positionReference != null ? _positionReference.Value : PositionReference.Owner,
+                NotificationToneUri = _tone,
                 Content = new SampleContentOne(),
                 Owner = this
             };
+            
         }
 
         private void ToastContent_Button_Click(object sender, RoutedEventArgs e)
@@ -38,8 +42,16 @@ namespace DemoApp
                 NotificationMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia lacus ut tempor pellentesque..",
                 Position = _positions != null ? _positions.Value : Positions.Central,
                 PositionReference = _positionReference != null ? _positionReference.Value : PositionReference.Owner,
+                NotificationToneUri = _tone,
                 Owner = this,
             };
+        }
+        
+        private void Tone_Checked(object sender, RoutedEventArgs e)
+        {
+            var radioButton = sender as RadioButton;
+            var value = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sound", radioButton.Tag.ToString());
+            _tone = value;
         }
 
         private void Position_Checked(object sender, RoutedEventArgs e) {
@@ -100,5 +112,6 @@ namespace DemoApp
         private Positions? _positions;
         private PositionReference? _positionReference;
         private int _fadeTimeOut;
+        private string _tone;
     }
 }

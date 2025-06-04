@@ -69,6 +69,14 @@
                                           Width="70" SelectedColorChanged="ToastHeaderBackground_SelectedColorChanged"/>
                 </WrapPanel>
             </GroupBox>
+
+            <GroupBox Header="Notification Tone">
+                <StackPanel>
+                    <RadioButton Tag="Tone1.mp3" GroupName="Tone" Checked="Tone_Checked" Content="Tone 1"/>
+                    <RadioButton Tag="Tone2.mp3" GroupName="Tone" Checked="Tone_Checked" Content="Tone 2"/>
+                    <RadioButton Tag="Tone3.mp3" GroupName="Tone" Checked="Tone_Checked" Content="Tone 3"/>
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </Window>
