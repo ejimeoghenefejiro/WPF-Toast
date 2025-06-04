@@ -110,6 +110,8 @@ namespace WPF.Toast {
             var contentControl = Content as FrameworkElement;
             contentControl.Tag = new Action(CloseAction);
 
+            PlayNotificationSound();
+
             BeginAnimation(OpacityProperty, _fadeInAnimation);
         }
 
@@ -166,6 +168,17 @@ namespace WPF.Toast {
             _activeTimer?.Stop();
             FadeOut();
         }
+
+        private void PlayNotificationSound()
+        {
+            if (!string.IsNullOrWhiteSpace(NotificationTone))
+            {
+                var player = new MediaPlayer();
+                player.Open(new Uri(NotificationTone));
+                player.Play();
+            }
+        }
+
         public abstract bool IsToastAction { get; set; }
         private readonly DoubleAnimation _fadeInAnimation;
         private readonly DoubleAnimation _fadeOutAnimation;
