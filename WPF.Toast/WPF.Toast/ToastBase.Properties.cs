@@ -15,6 +15,16 @@ namespace WPF.Toast {
 
 
         [Bindable(true)]
+        public string NotificationToneUri
+        {
+            get { return (string)GetValue(NotificationToneUriProperty); }
+            set { SetValue(NotificationToneUriProperty, value); }
+        }
+        public static readonly DependencyProperty NotificationToneUriProperty =
+            DependencyProperty.Register(nameof(NotificationToneUri), typeof(string), typeof(ToastBase));
+
+
+        [Bindable(true)]
         public Positions Position {
             get { return (Positions)GetValue(PositionProperty); }
             set { SetValue(PositionProperty, value); }

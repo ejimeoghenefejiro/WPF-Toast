@@ -171,10 +171,10 @@ namespace WPF.Toast {
 
         private void PlayNotificationSound()
         {
-            if (!string.IsNullOrWhiteSpace(NotificationTone))
+            if (!string.IsNullOrWhiteSpace(NotificationToneUri))
             {
                 var player = new MediaPlayer();
-                player.Open(new Uri(NotificationTone));
+                player.Open(new Uri(NotificationToneUri));
                 player.Play();
             }
         }
