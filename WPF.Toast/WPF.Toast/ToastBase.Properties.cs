@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using WPF.Toast.Enums;
 
@@ -23,6 +24,20 @@ namespace WPF.Toast {
         public static readonly DependencyProperty NotificationToneUriProperty =
             DependencyProperty.Register(nameof(NotificationToneUri), typeof(string), typeof(ToastBase));
 
+        [Bindable(true)]
+        public NotificationTone NotificationTone
+        {
+            get { return (NotificationTone)GetValue(NotificationToneProperty); }
+            set { SetValue(NotificationToneProperty, value); }
+        }
+        public static readonly DependencyProperty NotificationToneProperty =
+            DependencyProperty.Register(nameof(NotificationTone), typeof(NotificationTone), typeof(ToastBase), new PropertyMetadata(NotificationTone.None, NotificationToneChanged));
+
+        private static void NotificationToneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var toast = d as ToastBase;
+            toast.NotificationTone = (NotificationTone)e.NewValue;
+        }
 
         [Bindable(true)]
         public Positions Position {

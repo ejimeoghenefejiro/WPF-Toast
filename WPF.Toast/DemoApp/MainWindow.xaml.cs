@@ -29,6 +29,7 @@ namespace DemoApp
                 Position = _positions != null ? _positions.Value : Positions.Central,
                 PositionReference = _positionReference != null ? _positionReference.Value : PositionReference.Owner,
                 NotificationToneUri = _tone,
+                NotificationTone = _tone is null ? NotificationTone.Tone2 : NotificationTone.None,
                 Content = new SampleContentOne(),
                 Owner = this
             };
@@ -43,6 +44,7 @@ namespace DemoApp
                 Position = _positions != null ? _positions.Value : Positions.Central,
                 PositionReference = _positionReference != null ? _positionReference.Value : PositionReference.Owner,
                 NotificationToneUri = _tone,
+                NotificationTone = _tone is null ? NotificationTone.Tone1 : NotificationTone.None,
                 Owner = this,
             };
         }

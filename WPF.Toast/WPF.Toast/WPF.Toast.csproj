@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\NotificationTone.cs" />
     <Compile Include="Enums\PositionReference.cs" />
     <Compile Include="Exceptions\InvalidOwnerException.cs" />
     <Compile Include="ToastBase.Properties.cs" />
@@ -104,6 +105,9 @@
     <Resource Include="Resources\icon.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Tone1.wav" />
+    <Resource Include="Resources\Tone2.wav" />
+    <Resource Include="Resources\Tone3.wav" />
     <Content Include="Resources\Windows Proximity Notification.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

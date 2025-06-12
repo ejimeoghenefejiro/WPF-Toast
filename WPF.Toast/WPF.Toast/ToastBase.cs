@@ -9,6 +9,10 @@ using WPF.Toast.Exceptions;
 using static WPF.Toast.Utils.PositionCalculator;
 using static WPF.Toast.Utils.ThemeKeys;
 using static System.Windows.Application;
+using System.Windows.Controls;
+using System.IO;
+using System.Media;
+using System.Reflection;
 
 namespace WPF.Toast {
     /// <summary>
@@ -171,12 +175,20 @@ namespace WPF.Toast {
 
         private void PlayNotificationSound()
         {
+
             if (!string.IsNullOrWhiteSpace(NotificationToneUri))
             {
                 var player = new MediaPlayer();
                 player.Open(new Uri(NotificationToneUri));
                 player.Play();
             }
+            else if(NotificationTone != NotificationTone.None)
+            {
+                var assembly = Assembly.GetAssembly(typeof(ToastBase)).GetName().Name;
+                var stream = GetResourceStream(new Uri($"pack://application:,,,/{assembly};component/Resources/{NotificationTone.ToString()}.wav")).Stream;
+                new SoundPlayer(stream).Play();
+            }
+
         }
 
         public abstract bool IsToastAction { get; set; }
