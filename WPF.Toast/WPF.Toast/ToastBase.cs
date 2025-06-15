@@ -181,6 +181,8 @@ namespace WPF.Toast {
                 var player = new MediaPlayer();
                 player.Open(new Uri(NotificationToneUri));
                 player.Play();
+                player.MediaEnded += (s, e) => player.Close();
+
             }
             else if(NotificationTone != NotificationTone.None)
             {
