@@ -179,18 +179,18 @@ namespace WPF.Toast {
             if (!string.IsNullOrWhiteSpace(NotificationToneUri))
             {
                 var player = new MediaPlayer();
+                player.MediaEnded += (s, e) => player.Close();
                 player.Open(new Uri(NotificationToneUri));
                 player.Play();
-                player.MediaEnded += (s, e) => player.Close();
-
             }
             else if(NotificationTone != NotificationTone.None)
             {
                 var assembly = Assembly.GetAssembly(typeof(ToastBase)).GetName().Name;
-                var stream = GetResourceStream(new Uri($"pack://application:,,,/{assembly};component/Resources/{NotificationTone.ToString()}.wav")).Stream;
-                new SoundPlayer(stream).Play();
+                using (var stream = GetResourceStream(new Uri($"pack://application:,,,/{assembly};component/Resources/{NotificationTone.ToString()}.wav")).Stream)
+                {
+                    new SoundPlayer(stream).Play();   
+                }
             }
-
         }
 
         public abstract bool IsToastAction { get; set; }
